@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kuiz.com</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Fredoka:wght@300..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <style>
+            /* FOR MAIN PAGE*/
+            *
+                {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: "Faculty Glyphic", sans-serif;
+                }   
+             body
+                {
+                    color: #fff;
+                    background-color: rgb(17, 16, 16);
+                    overflow: hidden;
+                }
+            button{
+                    color:white;
+                }
+            button:hover{
+                    color:#fe6f9a;
+                } 
+            .quiz1
+                {
+                    padding: 4px;
+                    position: relative;
+                    left: 0;
+                    width: 100%;
+                    background-color: rgb(17, 16, 16);
+                    transition: .8s ease-in-out;
+                    transition-delay: .25s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;    
+                    z-index: 100;
+                }
+            .quiz1.active
+                {
+                    left: 0;
+                }      
+            .quiz-box
+                {
+                    margin-top:3%;
+                    position: relative;
+                    width: 500px;
+                    height: 550px;
+                    background-color:transparent;
+                    border: 1px solid;
+                    border-color:  #fe6f9a;
+                    border-radius: 6px;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 20px 30px;
+                }
+                .quiz-box h1
+                {
+                    font-size: 32px;
+                    text-align: center;
+                    background: linear-gradient(45deg, transparent, #fe6f9a, transparent);
+                    border-radius: 6px;
+                }
+                .quiz-header
+                {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 15px 0;
+                    border-bottom: 2px solid #fe6f9a;
+                    margin-bottom: 5px;
+                }
+                .quiz-header span
+                {
+                    font-size: 15px;
+                    font-weight: 500;
+                    border-radius:50%;
+                }
+                .quiz-header > span:hover{
+                    border:1px solid white;
+                }
+                .header-score{
+                    background: #fe6f9a;
+                    border-radius: 2px;
+                    padding: 7px;
+                }
+                .question-text{
+                    font-size: 20px;
+                    font-family: weight;
+                }
+                .option-list .answer
+                {
+                    width: 100%;
+                    padding: 5px;
+                    background: transparent;
+                    border: 2px solid rgba(255, 255, 255, .2);
+                    border-radius: 4px;
+                    font-size: 17px;
+                    margin: 10px 0;
+                    cursor: pointer;
+                    transition: .3s;  
+                }
+                .option-list .answer:hover
+                {
+                    background: rgba(255, 255, 255, .1);
+                    border-color:  rgba(255, 255, 255, .1);
+                }
+                .option-list .option
+                {
+                    width: 100%;
+                    padding: 5px;
+                    background: transparent;
+                    border: 2px solid rgba(255, 255, 255, .2);
+                    border-radius: 4px;
+                    font-size: 17px;
+                    margin: 10px 0;
+                    cursor: pointer;
+                    transition: .3s;
+                }
+                .option-list .option:hover
+                {
+                    background: rgba(255, 255, 255, .1);
+                    border-color:  rgba(255, 255, 255, .1);
+                }
+                .quiz-box .quiz-footer
+                {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 2px solid #fe6f9a;
+                    padding-top: 15px;
+                    margin-top: 15px;
+                }
+                .quiz-footer .question-total
+                {
+                    font-size: 16px;
+                    font-weight: 600;   
+                }
+                .quiz-footer .next-btn
+                {
+                    width: 100px;
+                    height: 45px;
+                    background-color: #fe6f9a;
+                    color: white;
+                    border-radius: 6px;
+                    border: 2px solid  rgba(255, 255, 255, .1);
+                    outline: none;
+                }
+                .next-btn:hover
+                {
+                    background-color: transparent;
+                    box-shadow: none;
+                    border-color: #fe6f9a;
+                }
+                /*RESULT PAGE  */
+        
+    #result> body
+        {
+            color: #fff;
+            background-color: black;
+            overflow: hidden;
+        } 
+    #result>.quiz-footer .retry-btn
+        {
+            width: 100px;
+            height: 45px;
+            background-color: #fe6f9a;
+            color: white;
+            border-radius: 6px;
+            border: 2px solid  rgba(255, 255, 255, .1);
+            outline: none;
+        }
+    #result >.result-box
+        {
+            margin-left:6%;
+            margin-top:6%;
+            position: absolute;
+            top: 2%;
+            left: 26%;
+            transform: translate(-50% -50%);
+            width: 500px;
+            background: url(https://i.gifer.com/origin/10/10186f1f4bb81d14cf7a17c0871e543f_w200.gif);
+            border: 2px solid #fe6f9a;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    #result >.result-box h2
+        {
+            font-size: 42px;
+        }
+   #result >.result-box .perc
+        {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0 20px;
+        }
+    #result > .result-box .perc
+        {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background-color: rgb(125, 125, 125, .5);
+            border-radius: 50%;
+            font-size: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    #result>.result-box >.buttons button
+        {
+            width: 130px;
+            height: 47px;
+            background-color: #fe6f9a;
+            border: 2px solid #fe6f9a;
+            outline: none;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+    #result >.result-box > .buttons > button:hover
+        {
+            border-color: #fe6f9a;
+            background-color: transparent;
+            box-shadow: none;
+        }
+    
+        </style>
+    </head>
+    <body>
+         <!-- PAGE 1 -->
+        <div id="question1">
+            <main class="main">
+                <header class="header">
+                    <section class="quiz1">
+                        <div class="quiz-box">
+                            <h1>Guess the Lyrics!</h1>
+                            <div class="quiz-header">
+                                <span>Quiz Website</span>
+                                <span class="header-score"><p class="points"> </p></span>
+                            </div>
+
+                            <h4 class="question-text">
+                              1.What technology is used to record cryptocurrency transactions?
+                            </h4>
+                            <div class="option-list">
+                                <button value="Token" onclick="q1(this.value)"class="option">
+                                    Token
+                                </button>
+                                <button value="Mining"onclick="q1(this.value)"class="option">
+                                    Mining
+                                </button>
+                                <button value="Digital"onclick=" q1(this.value)"class="option">
+                                    Digital wallet
+                                </button>
+                                <button value="Blockchain"onclick="q1(this.value)"class="answer">
+                                    Blockchain
+                                </button>
+                            </div>
+                            <div class="quiz-footer">
+                                <span class="question-total">1 of 5 Questions</span>
+                                <button onclick="showQuestion2()" class="next-btn">Next</button>
+                            </div>
+                        </div>
+                    </section>
+                </header>
+            </main>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div id="question2" style="display: none;">
+            <main class="main">
+                <header class="header">
+                    <section class="quiz1">
+                        <div class="quiz-box">
+                            <h1>Guess the Lyrics!</h1>
+                            <div class="quiz-header">
+                                <span>Quiz Website</span>
+                                <span class="header-score"><p class="points"> </p></span>
+                            </div>
+                            <h4 class="question-text">
+                               2.What tool would you use to reduce the digital image size?
+                            </h4>
+                            <div class="option-list">
+                                <button value="Crop" onclick="q2(this.value)" class="answer">
+                                   Crop
+                                </button>
+                                <button value="Rotate"onclick="q2(this.value)" class="option">
+                                   Rotate
+                                </button>
+                                <button value="Brush"onclick="q2(this.value)" class="option">
+                                   Brush
+                                </btutton>
+                                <button value="Filter"onclick="q2(this.value)" class="option">
+                                Filter
+                                </button>
+                            </div>
+                            <div class="quiz-footer">
+                                <span class="question-total">2 of 5 Questions</span>
+                                <button onclick="showQuestion3()" class="next-btn">Next</button>
+                            </div>
+                        </div>
+                    </section>
+                </header>
+            </main>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div id="question3" style="display: none;">
+            <main class="main">
+                <header class="header">
+                <section class="quiz1">
+                    <div class="quiz-box">
+                        <h1>Guess the Lyircs!</h1>
+                        <div class="quiz-header">
+                            <span>Quiz Website</span>
+                            <span class="header-score"><p class="points"> </p></span>
+                        </div>
+                        <h4 class="question-text">3.Why is Big Data important?
+
+
+                             </h4>
+                            <div class="option-list">
+                                <button value="structured"onclick="q3(this.value)" class="option">
+                                    Because it is structured
+                                </button>
+                                <button value="patterns"onclick="q3(this.value)"  class="answer">
+                                    Because it may be analyzed to reveal patterns and trends
+                                </button>
+                                <button  value="complexity"onclick="q3(this.value)" class="option">
+                                    Because of its complexity
+                                </button>
+                                <button value="size"onclick="q3(this.value)" class="option">
+                                    Because of its size
+                                </button>
+                            </div>
+                            <div class="quiz-footer">
+                                <span class="question-total">3 of 5 Questions</span>
+                                <button onclick="showQuestion4()" class="next-btn">Next</button>
+                            </div>
+                    </div>
+                </section>
+                </header>
+            </main>
+        </div>
+
+
+        <!-- PAGE 4 -->
+        <div id="question4" style="display: none;">
+            <main class="main">
+                <header class="header">
+                <section class="quiz1">
+                    <div class="quiz-box">
+                        <h1>Guess the Lyircs!</h1>
+                        <div class="quiz-header">
+                            <span>Quiz Website</span>
+                            <span class="header-score"><p class="points"> </p></span>
+                        </div>
+                        <h4 class="question-text">4.What kind of malware is designed to take advantage of a security hole before it is known?
+
+                        </h4>
+                            <div class="option-list">
+                                <button value="horse" onclick="q4(this.value)" class="option">
+                                    Trojan horse
+                                </button>
+                                <button  value="Ransomware"onclick="q4(this.value)" class="option">
+                                    Ransomware
+                                </button>
+                                <button value="Virus"onclick="q4(this.value)" class="option">
+                                    Virus
+                                </button>
+                                <button value="exploit"onclick="q4(this.value)"  class="answer">
+                                    Zero-day exploit
+                                </button>
+                            </div>
+                            <div class="quiz-footer">
+                                <span class="question-total">4 of 5 Questions</span>
+                                <button onclick="showQuestion5()" class="next-btn">Next</button>
+                            </div>
+                    </div>
+                </section>
+                </header>
+            </main>
+        </div>
+
+        <!-- PAGE 5 -->
+        <div id="question5" style="display: none;">
+            <main class="main">
+                <header class="header">
+                <section class="quiz1">
+                    <div class="quiz-box">
+                        <h1>Guess the Lyircs!</h1>
+                        <div class="quiz-header">
+                            <span>Quiz Website</span>
+                            <span class="header-score"><p class="points"> </p></span>
+                        </div>
+                        <h4 class="question-text">5.Making a compressed digital archive might produce what type of file format?
+</h4>
+                            <div class="option-list">
+                                <button value="JPEG"onclick="q5(this.value)" class="option">
+                                    JPEG
+                                </button>
+                                <button value="ZIP"onclick="q5(this.value)"class="answer">
+                                    ZIP
+                                </button>
+                                <button value="MP3"onclick="q5(this.value)" class="option">
+                                    MP3
+                                </button>
+                                <button value="PDF"onclick="q5(this.value)" class="option">
+                                    PDF
+                                </button>
+                            </div>
+                            <div class="quiz-footer">
+                                <span class="question-total">5 of 5 Questions</span>
+                                <button onclick="resultpage()" class="next-btn">Next</button>
+                            </div>
+                    </div>
+                </section>
+                </header>
+            </main>
+        </div>
+
+        <script src="QAA.js"></script>
+        
+        <!--RESULT PAGE-->
+        <div id="result" style="display:none;">
+            <div class="result-box">
+
+            <h2>Congradulationsssss!! </h2>
+            <div >
+                <div>
+                    
+                    <p class="perc"></p>
+                    
+                </div>
+<br><br>
+            </div>
+            <div class="buttons">
+                <button onclick="returnpage()" class="tryagain-btn">Try Again</button>
+                <button onclick="navpage()" class="gohome-btn">Go To Home </button>
+            </div>
+        </div>
+        </div>
+
+
+       
+    </body>
+</html>
